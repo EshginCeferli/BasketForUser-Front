@@ -1,0 +1,476 @@
+#navbar-area {
+  background-color: #505668;
+}
+#navbar-area .logo {
+  margin-right: 20px;
+}
+#navbar-area .logo img {
+  width: 120px;
+  height: 70px;
+  border-radius: 5px;
+}
+#navbar-area .my-toggleer {
+  border-color: white !important;
+  color: white !important;
+}
+#navbar-area .nav-center li {
+  margin-left: 20px;
+  font-size: 19px;
+}
+#navbar-area .nav-center li a {
+  color: wheat;
+  transition: 0.5s;
+  position: relative;
+}
+#navbar-area .nav-center li a::after {
+  content: "";
+  position: absolute;
+  bottom: 7px;
+  background: #C05850;
+  transition: 0.5s;
+  width: 0;
+  height: 3px;
+  left: 50%;
+  transition: all 0.5s;
+}
+#navbar-area .nav-center li a:hover::after {
+  width: 100%;
+  left: 0;
+}
+#navbar-area .search {
+  display: flex;
+}
+#navbar-area .search .header-right .input {
+  margin-right: 5px !important;
+}
+#navbar-area .search .search-name {
+  border-radius: 10px !important;
+  height: 25px !important;
+}
+#navbar-area .search .search-name li {
+  list-style: none;
+  display: flex;
+  padding-top: 5px !important;
+}
+#navbar-area .search .search-list {
+  display: flex !important;
+  text-align: center !important;
+  justify-content: end !important;
+}
+#navbar-area .search .search-list-p {
+  width: 100%;
+}
+#navbar-area .search .input {
+  padding: 0 8px 0 25px;
+  width: 170px;
+  min-width: 3em;
+  flex-grow: 1;
+  height: 37px;
+  border: 3px solid wheat;
+  border-right: none;
+  outline: none;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+#navbar-area .search .my-btn {
+  width: 55px;
+  height: 37px;
+  border: 3px solid wheat;
+  padding: 0.375em 0.625em;
+  background: whitesmoke;
+  border-left: none;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+#navbar-area .search .my-btn .search-icon {
+  padding-bottom: 3px;
+  color: #505668;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+#navbar-area .basket {
+  cursor: pointer;
+}
+#navbar-area .basket i {
+  font-size: 25px;
+  color: wheat;
+  margin-top: 10px;
+  transition: 0.5s;
+}
+#navbar-area .basket i:hover {
+  color: #C05850;
+  transition: 0.5s;
+}
+#navbar-area .basket i sup {
+  padding: 4px 6px;
+  color: #505668;
+  background: wheat;
+  border-radius: 50%;
+  font-size: small;
+  top: -20px;
+  right: 5px;
+  transition: 0.5s;
+}
+#navbar-area .basket i sup:hover {
+  background: #C05850;
+  transition: 0.5s;
+}
+#navbar-area .heart {
+  cursor: pointer;
+}
+#navbar-area .heart i {
+  font-size: 25px;
+  color: wheat;
+  margin-top: 10px;
+  margin-left: 10px;
+  transition: 0.5s;
+}
+#navbar-area .heart i:hover {
+  color: #C05850;
+  transition: 0.5s;
+}
+#navbar-area .heart i sup {
+  padding: 4px 5px;
+  color: #505668;
+  background: wheat;
+  border-radius: 50%;
+  font-size: small;
+  top: -20px;
+  right: 5px;
+  transition: 0.5s;
+}
+#navbar-area .heart i sup:hover {
+  background: #C05850;
+  transition: 0.5s;
+}
+#navbar-area .dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+#navbar-area .dropdown .drop-content {
+  width: 114px !important;
+}
+#navbar-area .dropdown:hover .dropdown-content {
+  display: block;
+}
+#navbar-area .dropdown .dropbtn {
+  width: 114px;
+  color: #505668;
+  padding: 5px;
+  font-size: 15px;
+  height: 37px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 3px solid wheat;
+  background-color: whitesmoke;
+}
+#navbar-area .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: whitesmoke;
+  min-width: 100px;
+  border-radius: 3px;
+  z-index: 2;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+#navbar-area .dropdown .dropdown-content a {
+  color: #505668;
+  padding: 10px 22px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+}
+#navbar-area .dropdown .dropdown-content a:hover {
+  background-color: #505668;
+  color: wheat;
+  font-size: 17px;
+}
+
+#product-area {
+  margin-bottom: 70px;
+}
+#product-area .my-active {
+  color: #C05850 !important;
+}
+#product-area .header {
+  margin-bottom: 30px;
+}
+#product-area .header h3 {
+  margin-top: 50px;
+  color: #505668;
+  letter-spacing: 4px;
+  padding: 15px;
+}
+#product-area .category .tab-active {
+  color: wheat !important;
+  background-color: #505668 !important;
+}
+#product-area .category .w3rcontainer {
+  border: 1px solid black;
+  border-radius: 2px;
+}
+#product-area .category .my-btn {
+  display: inline-block;
+  position: relative;
+  color: black;
+  border: none;
+  background-color: whitesmoke;
+  height: 35px;
+  border-radius: 2px;
+  margin-right: 20px;
+  padding: 1px 15px;
+  transition: 0.5s;
+}
+#product-area .category .my-btn:hover {
+  border-radius: 2px;
+  transition: 0.5s;
+}
+#product-area .category .my-btn:after {
+  content: "";
+  border-radius: 5px;
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  left: 0;
+  bottom: -5px;
+  background-color: #505668;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+#product-area .category .my-btn:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+#product-area .card {
+  position: relative;
+  width: 100%;
+  background: #D7DBDC;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+#product-area .card:hover .contentBox .buy {
+  top: 0;
+  opacity: 1;
+}
+#product-area .card:hover::before {
+  top: -70%;
+  transform: skewY(405deg);
+}
+#product-area .card .imgBox {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  z-index: 1;
+}
+#product-area .card .imgBox a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: 0.7s;
+}
+#product-area .card .imgBox a img:hover {
+  transform: scale(1.2);
+  transition: 0.7s;
+}
+#product-area .card .imgBox:hover i {
+  transform: translateX(0px);
+}
+#product-area .card .imgBox:hover .sale {
+  transform: translateX(0px);
+}
+#product-area .card .imgBox i {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #393e4c;
+  color: wheat;
+  transform: translateX(60px);
+  transition: 0.5s;
+}
+#product-area .card .imgBox i:hover {
+  background: black;
+}
+#product-area .card .imgBox .sale {
+  position: absolute;
+  background-color: #393e4c;
+  color: wheat;
+  border-radius: 3px;
+  padding: 1px 15px;
+  top: 20px;
+  left: 18px;
+  font-size: 17px;
+  transform: translateX(-100px);
+  transition: 0.5s;
+}
+#product-area .card .imgBox .sale:hover {
+  background: black;
+  color: #C05850;
+}
+#product-area .card .contentBox {
+  width: 100%;
+  position: relative;
+  border: 1px solid rgb(230, 224, 224);
+  background-color: whitesmoke;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+}
+#product-area .card .contentBox .brend {
+  color: #505668;
+  font-size: 20px;
+  margin: 0 !important;
+  margin-top: -3px !important;
+  transition: 0.5s;
+}
+#product-area .card .contentBox .brend:hover {
+  color: #C05850;
+  transition: 0.5s;
+}
+#product-area .card .contentBox .name {
+  color: #505668;
+  letter-spacing: 1px;
+  transition: 0.5s;
+  font-size: 18px;
+  margin-bottom: 5px !important;
+}
+#product-area .card .contentBox .name:hover {
+  color: #C05850;
+  transition: 0.5s;
+}
+#product-area .card .contentBox .price {
+  color: #505668;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 17px;
+  transition: 0.5s;
+}
+#product-area .card .contentBox .price:hover {
+  color: #C05850;
+  transition: 0.5s;
+}
+#product-area .card .contentBox .buy {
+  font-size: 15px;
+  position: relative;
+  top: 100px;
+  border-radius: 7px;
+  padding: 6px 15px;
+  font-weight: bold;
+  opacity: 0;
+  text-decoration: none;
+  background-color: #393e4c;
+  color: wheat;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: 0.5s;
+}
+#product-area .card .contentBox .buy:hover {
+  background: black;
+  color: #C05850;
+  transition: 0.5s;
+}
+#product-area .my-button {
+  text-align: center;
+  margin-top: 60px;
+}
+#product-area .my-button .my-btn {
+  display: inline-block;
+  position: relative;
+  color: black;
+  border: none;
+  background-color: whitesmoke;
+  height: 35px;
+  border-radius: 2px;
+  margin-right: 20px;
+  padding: 1px 15px;
+  transition: 0.5s;
+  margin-bottom: 30px;
+}
+#product-area .my-button .my-btn:hover {
+  border-radius: 2px;
+  transition: 0.5s;
+}
+#product-area .my-button .my-btn:after {
+  content: "";
+  border-radius: 5px;
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  left: 0;
+  bottom: -5px;
+  background-color: #505668;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+#product-area .my-button .my-btn:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  .card {
+    margin-bottom: 15px;
+  }
+  .card .contentBox .brend {
+    font-size: 16px !important;
+  }
+  .card .contentBox .name {
+    font-size: 15px !important;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .card .contentBox .brend {
+    font-size: 13px !important;
+  }
+  .card .contentBox .name {
+    font-size: 12px !important;
+  }
+  .card .contentBox .price {
+    font-size: 14px !important;
+  }
+  .card .contentBox .buy {
+    font-size: 10px !important;
+  }
+  .priceSlider .min-max .max {
+    float: left !important;
+    margin-top: 10px !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .category .my-btn {
+    margin-right: 10px !important;
+  }
+  .card {
+    margin-bottom: 15px;
+  }
+  .card .contentBox .brend {
+    font-size: 15px !important;
+  }
+  .card .contentBox .name {
+    font-size: 14px !important;
+  }
+  .header h1 {
+    font-size: 23px !important;
+  }
+}
+@media (max-width: 768px) {
+  .category .my-btn {
+    font-size: 14px !important;
+  }
+  .card {
+    margin-bottom: 15px;
+  }
+}/*# sourceMappingURL=main.css.map */
