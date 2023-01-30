@@ -1,0 +1,152 @@
+#footer-area {
+    background-color: #393e4c;
+    padding: 90px;
+  
+    .info {
+      $background-color_1: #c05850;
+  
+      .w3rcontainer {
+        border: 1px solid #cccfdb;
+        border-radius: 2px;
+      }
+  
+      h6 {
+        display: inline-block;
+        position: relative;
+        color: wheat;
+        letter-spacing: 2px;
+  
+        border: none;
+        font-size: 20px;
+  
+        &:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          transform: scaleX(0);
+          height: 2px;
+          bottom: -3px;
+          left: 0;
+          background-color: $background-color_1;
+          transform-origin: bottom right;
+          transition: transform 0.25s ease-out;
+        }
+  
+        &:hover {
+          &:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+          }
+        }
+      }
+  
+      span {
+        color: grey;
+        display: block;
+      }
+  
+      ul {
+        padding-left: 0;
+        line-height: 35px;
+  
+        li {
+          list-style: none;
+  
+          a {
+            text-decoration: none;
+  
+            transition: 0.3s;
+            color: grey;
+  
+            &:hover {
+              color: #c05850;
+            }
+          }
+        }
+      }
+  
+      .social-area {
+        margin-top: 20px;
+        display: flex;
+        gap: 15px;
+  
+        .social {
+          width: 35px;
+          height: 35px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background-color: wheat;
+          transition: 0.5s;
+  
+          i {
+            font-size: 20px;
+            color: #505668;
+            transition: 0.5s;
+          }
+  
+          &:hover {
+            background-color: #c05850;
+            transition: 0.5s;
+  
+            i {
+              color: whitesmoke;
+              transition: 0.5s;
+            }
+          }
+        }
+      }
+  
+      img {
+        width: 70px;
+        height: 67px;
+        display: block;
+      }
+  
+      .contact {
+        a {
+          margin-top: 25px;
+          color: grey;
+          display: block;
+          text-decoration: none;
+          transition: 0.5s;
+  
+          &:hover {
+            color: #c05850;
+            transition: 0.5s;
+          }
+        }
+      }
+    }
+  
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: white;
+      margin: 20px 0;
+    }
+  
+    .copyright {
+      color: grey;
+      display: flex;
+      justify-content: center;
+  
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+  
+  @media (max-width: 1150px) {
+    #footer {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .social {
+      margin-bottom: 20px;
+    }
+  }
+  

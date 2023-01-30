@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
+
 import { TextField } from "@mui/material";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-function ProductCreateBtn() {
+function ProductCreateBtn(props) {
   const url = "https://localhost:7110";
-
-  const [products, setProducts] = useState();
 
   const [nameInput, setNameInput] = useState();
   const [priceInput, setPriceInput] = useState();
   const [countInput, setcountInput] = useState();
+  const [imageInput, setImageInput] = useState();
 
   //sweet alert
   const Success = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
-    timer: 3000,
+    timer: 1000,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -28,24 +28,13 @@ function ProductCreateBtn() {
     toast: true,
     position: "top-end",
     showConfirmButton: false,
-    timer: 3000,
+    timer: 1000,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener("mouseenter", Swal.stopTimer);
       toast.addEventListener("mouseleave", Swal.resumeTimer);
     },
   });
-
-  //Get Products from Api
-  async function GetProduct() {
-    await axios.get(`${url}/api/Product/GetAll`).then((res) => {
-      setProducts(res.data);
-    });
-  }
-
-  useEffect(() => {
-    GetProduct();
-  }, []);
 
   //Create Product
   async function CreateProduct() {
@@ -54,6 +43,7 @@ function ProductCreateBtn() {
         name: nameInput,
         price: priceInput,
         count: countInput,
+        image: imageInput,
       })
       .then((res) => {
         if (res.data.status === "success" || res.status === 200) {
@@ -63,13 +53,37 @@ function ProductCreateBtn() {
           });
         }
       })
-      .catch(
-        Reject.fire({
-          icon: "error",
-          title: "Something went wrong",
-        })
-      );
-    window.location.reload();
+      .catch((err) => {
+        if (err.response.status === 400 || err.response.data.status === 400) {
+          Reject.fire({
+            icon: "error",
+            title: "Please fill the blank",
+          });
+        } else {
+          Reject.fire({
+            icon: "error",
+            title: "Something went wrong!",
+          });
+        }
+      });
+    props.GetProducts();
+  }
+
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () =>
+        resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
+      reader.onerror = (error) => reject(error);
+    });
+  }
+
+  function base64Img(file) {
+    var base64String = getBase64(file);
+    base64String.then(function (result) {
+      setImageInput(result);
+    });
   }
 
   return (
@@ -102,7 +116,7 @@ function ProductCreateBtn() {
               ></button>
             </div>
             <div className="modal-body container addition">
-              {/* <h6 className="addition-title">{t("Create your Product")}</h6> */}
+              <h4 className="addition-title">Please fill the blank</h4>
               <div className="row">
                 <TextField
                   onChange={(e) => setNameInput(e.target.value)}
@@ -124,11 +138,11 @@ function ProductCreateBtn() {
                   variant="outlined"
                   step="0.1"
                   min="0"
-                  max="20"
+                 
                 />
               </div>
 
-              <div className="row">
+              <div className="row mt-2">
                 <TextField
                   onChange={(e) => setcountInput(e.target.value)}
                   value={countInput}
@@ -138,6 +152,21 @@ function ProductCreateBtn() {
                   label="Count"
                   variant="outlined"
                 />
+              </div>
+              <div className="row mt-2">
+                <img
+                  style={{
+                    width: "150px",
+                    height: "75px",
+                    borderRadius: "unset",
+                  }}
+                  src={`data:image/jpeg;base64,${imageInput}`}
+                  alt="Product image"
+                />
+                <input
+                  type="file"
+                  onChange={(e) => base64Img(e.target.files[0])}
+                ></input>
               </div>
             </div>
             <div className="modal-footer">

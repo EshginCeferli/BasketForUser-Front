@@ -1,0 +1,120 @@
+#footer-area {
+  background-color: #393e4c;
+  padding: 90px;
+}
+#footer-area .info .w3rcontainer {
+  border: 1px solid #cccfdb;
+  border-radius: 2px;
+}
+#footer-area .info h6 {
+  display: inline-block;
+  position: relative;
+  color: wheat;
+  letter-spacing: 2px;
+  border: none;
+  font-size: 20px;
+}
+#footer-area .info h6:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #c05850;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+#footer-area .info h6:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+#footer-area .info span {
+  color: grey;
+  display: block;
+}
+#footer-area .info ul {
+  padding-left: 0;
+  line-height: 35px;
+}
+#footer-area .info ul li {
+  list-style: none;
+}
+#footer-area .info ul li a {
+  text-decoration: none;
+  transition: 0.3s;
+  color: grey;
+}
+#footer-area .info ul li a:hover {
+  color: #c05850;
+}
+#footer-area .info .social-area {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+#footer-area .info .social-area .social {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: wheat;
+  transition: 0.5s;
+}
+#footer-area .info .social-area .social i {
+  font-size: 20px;
+  color: #505668;
+  transition: 0.5s;
+}
+#footer-area .info .social-area .social:hover {
+  background-color: #c05850;
+  transition: 0.5s;
+}
+#footer-area .info .social-area .social:hover i {
+  color: whitesmoke;
+  transition: 0.5s;
+}
+#footer-area .info img {
+  width: 70px;
+  height: 67px;
+  display: block;
+}
+#footer-area .info .contact a {
+  margin-top: 25px;
+  color: grey;
+  display: block;
+  text-decoration: none;
+  transition: 0.5s;
+}
+#footer-area .info .contact a:hover {
+  color: #c05850;
+  transition: 0.5s;
+}
+#footer-area .line {
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  margin: 20px 0;
+}
+#footer-area .copyright {
+  color: grey;
+  display: flex;
+  justify-content: center;
+}
+#footer-area .copyright a {
+  text-decoration: none;
+}
+
+@media (max-width: 1150px) {
+  #footer {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .social {
+    margin-bottom: 20px;
+  }
+}/*# sourceMappingURL=footer.css.map */
