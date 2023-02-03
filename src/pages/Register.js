@@ -9,10 +9,7 @@ import "../assets/css/Register/register.css"
 function Register() {
   const url = "https://localhost:7110";
 
-  let myInput = document.getElementById("#checkId");
   
-    console.log(myInput);
-
   //Prop for api start
   const [fullname, setFullname] = useState();
   const [username, setUsername] = useState();

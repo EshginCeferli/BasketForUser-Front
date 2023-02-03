@@ -6,7 +6,9 @@ import "../../assets/css/Navbar/navbar.css"
 function Navbar() {
   const navigate = useNavigate();
 
+  let basketCount = localStorage.getItem("basketCount")
 
+  // const [count, setCount] =(basketCount)
   //Get currents users name from token
   let currentToken = localStorage.getItem("token");
   let currentUser;
@@ -30,7 +32,6 @@ function Navbar() {
       ];
   }
 
-  console.log(currentUser);
 
   //Logout function
   function handleLogout() {

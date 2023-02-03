@@ -8,7 +8,7 @@ function Product() {
   return (
     <div>
       <Navbar />
-      <section
+      {/* <section
         id="header-area"
         style={{ backgroundImage: 'url("/images/bg-01.jpg")' }}
       >
@@ -20,7 +20,7 @@ function Product() {
           </div>
         </div>
       </section>
-      
+       */}
       <section id="product-area">
         <div className="container">
           <div className="row">

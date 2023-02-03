@@ -10,6 +10,7 @@ function ProductTable() {
 
   const [products, setProducts] = useState([]);
 
+  //Paginate items
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -29,6 +30,7 @@ function ProductTable() {
     setItemOffset(newOffset);
     setCurrentPage(event.selected + 1);
   };
+  //Paginate ends
 
   //sweet alert
   const Success = Swal.mixin({
@@ -71,7 +73,7 @@ function ProductTable() {
     GetProducts();
   }, []);
 
-  //Delete Movie
+  //Delete Product
   const DeleteProduct = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -104,6 +106,8 @@ function ProductTable() {
       });
   };
 
+
+
   return (
     <div>
       <div className="col-lg-12 grid-margin stretch-card">
@@ -132,7 +136,7 @@ function ProductTable() {
                     <td>{++rowNumber}</td>
 
                     <td className="py-1">
-                      {" "}
+                     
                       <img
                         style={{
                           width: "100px",

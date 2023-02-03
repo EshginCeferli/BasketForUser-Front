@@ -1,9 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
+import Swal from "sweetalert2";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
 
 function Products() {
   const url = "https://localhost:7110";
+
+  // let basketCount = localStorage.getItem('basketCount');
+
+  // if (!basketCount) {
+  //   basketCount = 0;
+  // } else {
+  //   basketCount = parseInt(basketCount, 10);
+  // }
+
+  //Get token of current user send backend by request header
+  let token = JSON.parse(localStorage.getItem("token"));
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
   const [products, setProducts] = useState([]);
 
@@ -26,6 +46,30 @@ function Products() {
   };
   //paginate items end
 
+  //sweet alert
+  const Success = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2400,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+  const Reject = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2400,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   //Get Products from Api
   async function GetProducts() {
     await axios.get(`${url}/api/Product/GetAll`).then((res) => {
@@ -43,11 +87,60 @@ function Products() {
     GetProducts();
   }, []);
 
+  //Add products to basket method
+  async function AddBasket(id) {
+    await axios
+      .post(`${url}/api/Basket/AddBasket?id=${id}`, null, config)
+      .then((res) => {
+        if (res.data.status === "success" || res.status === 200) {
+          // basketCount++;
+          // localStorage.setItem('basketCount', basketCount);
+          //  console.log(basketCount);
+          Success.fire({
+            icon: "success",
+            title: "Product successfully added to basket",
+          });
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 401 || err.response.data.status === 401) {
+          Reject.fire({
+            icon: "error",
+            title: "You need to login first to add products to basket",
+          });
+        } else {
+          Reject.fire({
+            icon: "error",
+            title: "Something went wrong!",
+          });
+        }
+      });
+  }
+
   return (
     <div>
+      <Swiper style={{backgroundColor : "green" , width : "100%"}}
+       loop={true}
+       spaceBetween={10}
+       effect={"coverflow"}
+       grabCursor={true}
+       slidesPerView={"4"}>
+        <SwiperSlide>
+          asdasdasasdasdas
+        </SwiperSlide>
+        <SwiperSlide>
+          asdasdasasdasd
+        </SwiperSlide>
+        <SwiperSlide>
+          asdasd1121
+        </SwiperSlide>
+        <SwiperSlide>
+          asdasdas
+        </SwiperSlide>
+      </Swiper>
       <div className="row">
         <div className="col-lg-12 col-sm-12">
-          <div className="category" style={{  marginBottom:"20px"}}>
+          <div className="category" style={{ marginBottom: "20px" }}>
             <button className="my-btn tab-active">All</button>
           </div>
         </div>
@@ -69,7 +162,11 @@ function Products() {
                 <div className="contentBox">
                   <p className="name">{product.name}</p>
                   <h5 className="price">{product.price} €</h5>
-                  <a href="#" className="buy">
+                  <a
+                    href="#"
+                    className="buy"
+                    onClick={() => AddBasket(product.id)}
+                  >
                     Buy Now
                   </a>
                 </div>
