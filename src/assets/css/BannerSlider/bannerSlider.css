@@ -1,0 +1,106 @@
+#slider-area .swiper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#slider-area .swiper .swiper-slide {
+  background: #fff;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  align-items: center;
+}
+#slider-area .swiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#slider-area .swiper .swiper-slide .slider-detail {
+  position: absolute;
+  margin-left: 130px;
+}
+#slider-area .swiper .swiper-slide .slider-detail p {
+  font-size: 30px;
+  color: black;
+  font-family: font6;
+}
+#slider-area .swiper .swiper-slide .slider-detail h1 {
+  font-size: 70px;
+  color: black;
+  font-family: font1;
+}
+#slider-area .swiper .swiper-slide .slider-detail .my-btn {
+  width: 180px;
+  height: 45px;
+  border-radius: 25px;
+  border: none;
+  color: #C05850;
+  margin-top: 30px;
+  background-color: #393e4c;
+  transition: 0.5s;
+  font-weight: bold;
+  font-family: font3;
+  letter-spacing: 2px;
+}
+#slider-area .swiper .swiper-slide .slider-detail .my-btn:hover {
+  background-color: black;
+  color: #C05850;
+  font-weight: bold;
+}
+
+@media (max-width: 1450px) {
+  #slider-area .swiper .swiper-slide .slider-detail h1 {
+    font-size: 60px;
+  }
+}
+@media (max-width: 1300px) {
+  #slider-area .swiper .swiper-slide .slider-detail h1 {
+    font-size: 50px;
+  }
+}
+@media (max-width: 1200px) {
+  #slider-area .swiper .swiper-slide .slider-detail P {
+    font-size: 23px;
+  }
+  #slider-area .swiper .swiper-slide .slider-detail h1 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 992px) {
+  #slider-area .swiper .swiper-slide .slider-detail P {
+    font-size: 20px;
+  }
+  #slider-area .swiper .swiper-slide .slider-detail h1 {
+    font-size: 35px;
+  }
+  #slider-area .swiper .swiper-slide .slider-detail .my-btn {
+    width: 130px;
+    height: 40px;
+  }
+}
+@media (max-width: 850px) {
+  #slider-area .swiper .swiper-slide .slider-detail P {
+    font-size: 17px;
+  }
+  #slider-area .swiper .swiper-slide .slider-detail h1 {
+    font-size: 30px;
+  }
+  #slider-area .swiper .swiper-slide .slider-detail .my-btn {
+    width: 130px;
+    height: 40px;
+  }
+}
+@media (max-width: 650px) {
+  #slider-area .swiper .swiper-slide .slider-detail P {
+    font-size: 12px;
+  }
+  #slider-area .swiper .swiper-slide .slider-detail h1 {
+    font-size: 20px;
+  }
+  #slider-area .swiper .swiper-slide .slider-detail .my-btn {
+    width: 110px;
+    height: 30px;
+  }
+}/*# sourceMappingURL=bannerSlider.css.map */

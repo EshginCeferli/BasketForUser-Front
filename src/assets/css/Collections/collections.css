@@ -1,0 +1,78 @@
+#collection-area {
+  margin-bottom: 80px;
+}
+#collection-area .collection {
+  width: 100%;
+  margin-top: 50px;
+  border-radius: 7px;
+  border: 1px solid rgb(217, 216, 216);
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+#collection-area .collection .opacity {
+  visibility: hidden;
+  min-width: 415px;
+  min-height: 281.09px;
+  position: absolute;
+  background-color: #505668;
+  opacity: 0;
+  transition: 0.2s;
+}
+#collection-area .collection .collection-detail h3,
+#collection-area .collection .collection-detail p {
+  color: #505668;
+  letter-spacing: 2px;
+}
+#collection-area .collection:hover .opacity {
+  visibility: visible;
+  opacity: 0.5;
+  z-index: 2;
+  border-radius: 7px;
+}
+#collection-area .collection:hover .collection-detail {
+  z-index: 3;
+}
+#collection-area .collection:hover .collection-detail h3,
+#collection-area .collection:hover .collection-detail p {
+  color: rgb(243, 211, 152);
+  transition: 0.7s;
+}
+#collection-area .collection:hover .line-btn {
+  transition: 0.7s;
+  z-index: 3;
+  visibility: visible;
+}
+#collection-area .collection:hover img {
+  transform: scale(1.1);
+  transition: 0.7s;
+}
+#collection-area .collection img {
+  width: 100%;
+  transition: 0.7s;
+}
+#collection-area .collection .collection-detail {
+  position: absolute;
+  left: 35px;
+  top: 40px;
+}
+#collection-area .collection .line-btn {
+  transition: 0.1s;
+  width: 90px;
+  left: 35px;
+  bottom: 50px;
+  background: none;
+  border: none;
+  position: absolute;
+  visibility: hidden;
+  color: rgb(243, 211, 152);
+  border-bottom: 2px solid rgb(243, 211, 152);
+}
+
+@media screen and (max-width: 992px) {
+  .opacity {
+    width: 100%;
+    height: 100%;
+  }
+}/*# sourceMappingURL=collections.css.map */

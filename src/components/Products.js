@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import Swal from "sweetalert2";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -119,43 +118,18 @@ function Products() {
 
   return (
     <div>
-      <Swiper style={{backgroundColor : "green" , width : "100%"}}
-       loop={true}
-       spaceBetween={10}
-       effect={"coverflow"}
-       grabCursor={true}
-       slidesPerView={"4"}>
-        <SwiperSlide>
-          asdasdasasdasdas
-        </SwiperSlide>
-        <SwiperSlide>
-          asdasdasasdasd
-        </SwiperSlide>
-        <SwiperSlide>
-          asdasd1121
-        </SwiperSlide>
-        <SwiperSlide>
-          asdasdas
-        </SwiperSlide>
-      </Swiper>
       <div className="row">
-        <div className="col-lg-12 col-sm-12">
-          <div className="category" style={{ marginBottom: "20px" }}>
-            <button className="my-btn tab-active">All</button>
-          </div>
-        </div>
-
         {currentItems?.map((product, i) => {
           return (
-            <div className="col-lg-4 col-md-6 col-sm-12" key={i}>
+            <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
               <div className="card">
                 <div className="imgBox">
-                  <a href="product-detail.html">
+                  <Link to={`/productDetail/${product.id}`}>
                     <img
                       src={`data:image/jpeg;base64,${product.image}`}
                       alt=""
                     />
-                  </a>
+                  </Link>
                   <i className="fa-solid fa-heart my-heart" />
                   <div className="sale">Sale</div>
                 </div>

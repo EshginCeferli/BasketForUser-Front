@@ -1,0 +1,192 @@
+@mixin main-button {
+    width: 180px;
+    height: 45px;
+    border-radius: 25px;
+    border: none;
+    color: #C05850;
+    margin-top: 30px;
+    background-color: #393e4c;
+    transition: 0.5s;
+    font-weight: bold;
+    font-family: font3;
+    letter-spacing: 2px;
+
+    &:hover {
+        background-color: black;
+        color: #C05850;
+        font-weight: bold;
+    }
+
+}
+
+#slider-area {
+
+
+    .swiper {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        .swiper-slide {
+
+            background: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .slider-detail {
+                position: absolute;
+                margin-left: 130px;
+
+                p {
+                    font-size: 30px;
+                    color: black;
+                    font-family: font6;
+                }
+
+                h1 {
+                    font-size: 70px;
+                    color: black;
+                    font-family: font1;
+                }
+
+                .my-btn {
+                    @include main-button;
+                }
+            }
+        }
+    }
+
+
+}
+
+@media(max-width:1450px) {
+    #slider-area {
+        .swiper {
+            .swiper-slide {
+                .slider-detail {
+                    h1 {
+                        font-size: 60px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:1300px) {
+    #slider-area {
+        .swiper {
+            .swiper-slide {
+                .slider-detail {
+                    h1 {
+                        font-size: 50px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:1200px) {
+    #slider-area {
+        .swiper {
+            .swiper-slide {
+                .slider-detail {
+                    P {
+                        font-size: 23px;
+                    }
+
+                    h1 {
+                        font-size: 40px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:992px) {
+    #slider-area {
+        .swiper {
+            .swiper-slide {
+                .slider-detail {
+                    P {
+                        font-size: 20px;
+                    }
+
+                    h1 {
+                        font-size: 35px;
+                    }
+
+                    .my-btn {
+                        width: 130px;
+                        height: 40px;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:850px) {
+    #slider-area {
+        .swiper {
+            .swiper-slide {
+                .slider-detail {
+                    P {
+                        font-size: 17px;
+                    }
+
+                    h1 {
+                        font-size: 30px;
+                    }
+
+                    .my-btn {
+                        width: 130px;
+                        height: 40px;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:650px) {
+    #slider-area {
+        .swiper {
+            .swiper-slide {
+                .slider-detail {
+                    P {
+                        font-size: 12px;
+                    }
+
+                    h1 {
+                        font-size: 20px;
+                    }
+
+                    .my-btn {
+                        width: 110px;
+                        height: 30px;
+                    }
+
+                }
+            }
+        }
+    }
+}

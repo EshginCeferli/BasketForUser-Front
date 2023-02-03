@@ -134,8 +134,8 @@ function BasketProducts() {
                           </td>
                           <td>{basket.product.name}</td>
                           <td>{basket.quantity} </td>
-                          <td>{basket.product.price} $</td>
-                          <td>{basket.product.price * basket.quantity} $</td>
+                          <td>{(basket.product.price).toFixed(2)} $</td>
+                          <td>{(basket.product.price * basket.quantity).toFixed(2)} $</td>
                           <td  style={{ display :"none" }} >
                           {(total += basket.product.price * basket.quantity )}
                           </td>

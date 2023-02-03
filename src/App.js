@@ -6,12 +6,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Protection from "./components/Protection";
 import Basket from "./pages/Basket";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
     <div>
       <Routes>
         <Route exact path="/" element={<Product />} />
+        <Route exact path="/productDetail/:id" element={<ProductDetail/>} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/basket" element={<Basket />} />

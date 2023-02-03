@@ -1,0 +1,33 @@
+#brand-area {
+  margin-bottom: 80px;
+}
+#brand-area .container h3 {
+  margin-bottom: 40px;
+  letter-spacing: 3px;
+  padding: 15px;
+  color: #505668;
+}
+#brand-area .container .swiper {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  overflow: hidden;
+}
+#brand-area .container .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#brand-area .container .swiper-slide img {
+  display: block;
+  width: 70%;
+  height: 100%;
+  transition: 0.5s;
+}
+#brand-area .container .swiper-slide img:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}/*# sourceMappingURL=brands.css.map */

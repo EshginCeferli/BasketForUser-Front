@@ -3,11 +3,16 @@ import Footer from "../components/layout/Footer";
 import Navbar from "../components/layout/Navbar";
 import Products from "../components/Products";
 import "../assets/css/Product/product.css"
+import BannerSlider from "../components/BannerSlider";
+import Collections from "../components/Collections";
+import Services from "../components/Services";
+import Brands from "../components/Brands";
 
 function Product() {
   return (
     <div>
       <Navbar />
+      <BannerSlider/>
       {/* <section
         id="header-area"
         style={{ backgroundImage: 'url("/images/bg-01.jpg")' }}
@@ -21,6 +26,7 @@ function Product() {
         </div>
       </section>
        */}
+       <Collections/>
       <section id="product-area">
         <div className="container">
           <div className="row">
@@ -32,6 +38,8 @@ function Product() {
           </div>
         </div>
       </section>
+      <Services/>
+      <Brands/>
       <Footer/>
     </div>
   );
