@@ -1,12 +1,44 @@
-import React from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Swal from "sweetalert2";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
 import "../../assets/css/Navbar/navbar.css"
 
 function Navbar() {
   const navigate = useNavigate();
 
-  let basketCount = localStorage.getItem("basketCount")
+  const url = "https://localhost:7110";
+
+  let token = JSON.parse(localStorage.getItem("token"));
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const [basketCount, setBasketCount] = useState("");
+
+  async function GetProducts() {
+    await axios.get(`${url}/api/Basket/GetBasketCount`, config).then((res) => {
+      setBasketCount(res.data);
+      // if(res.data.status === "success" || res.status === 200){
+      //   Success.fire({
+      //     icon: "success",
+      //     title: "Welcome, you can manage products here!",
+      //   });
+      // }
+      // console.log(res);
+    
+      // localStorage.setItem("basketCount", res.data)
+    });    
+  }
+  // console.log(basketCount)
+
+  useEffect(() => {
+    GetProducts();
+  }, []);
+
+  // let basketCount = localStorage.getItem("basketCount")
 
   // const [count, setCount] =(basketCount)
   //Get currents users name from token
@@ -84,13 +116,13 @@ function Navbar() {
                         </NavLink>
                       </li>
                       <li className="nav-item">
-                        <a
+                        <NavLink
                           className="nav-link active"
                           aria-current="page"
-                          href="blog.html"
+                          to={"/shop"}
                         >
-                          Blog
-                        </a>
+                          Shop
+                        </NavLink>
                       </li>
                       <li className="nav-item">
                         <a
@@ -141,7 +173,7 @@ function Navbar() {
                     <div className="basket">
                       <Link to={"/basket"}>
                         <i className="fa-solid fa-basket-shopping">
-                          <sup>0</sup>
+                          <sup>{basketCount}</sup>
                         </i>
                       </Link>
                     </div>

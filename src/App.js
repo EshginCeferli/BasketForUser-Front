@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Protection from "./components/Protection";
 import Basket from "./pages/Basket";
 import ProductDetail from "./pages/ProductDetail";
+import Shop from "./pages/Shop";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Product />} />
         <Route exact path="/productDetail/:id" element={<ProductDetail/>} />
+        <Route exact path="/shop" element={<Shop/>} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/basket" element={<Basket />} />
