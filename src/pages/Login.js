@@ -37,6 +37,7 @@ function Login() {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate("/");
         } else {
           Swal.fire({
             position: "top-end",
@@ -49,7 +50,7 @@ function Login() {
         console.log(response);
       })
       .catch(function (error) {});
-    navigate("/");
+  
   }
 
   return (

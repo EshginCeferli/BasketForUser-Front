@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-
 import ReactPaginate from "react-paginate";
 
 function FilteredProducts(props) {
   let products = props.filteredProducts;
-    console.log(props);
+
   const ref = useRef(null);
 
   //Pagineate items
@@ -29,7 +28,8 @@ function FilteredProducts(props) {
   };
 
   return (
-    <div className="col-lg-9 col-md-9 col-sm-12">
+    <>
+      {" "}
       <div className="row" ref={ref}>
         <div className="col-lg-12 col-sm-12">
           <div className="category">
@@ -41,19 +41,21 @@ function FilteredProducts(props) {
             <div className="col-lg-4 col-md-6 col-sm-12" key={i}>
               <div className="card">
                 <div className="imgBox">
-                  <a href="product-detail.html">
-                    <img src="assets/images/Product/p-1.jpg" alt="" />
-                  </a>
+                  <Link to={`/productDetail/${product.id}`}>
+                    <img
+                      src={`data:image/jpeg;base64,${product.image}`}
+                      alt=""
+                    />
+                  </Link>
                   <i className="fa-solid fa-heart my-heart" />
                   <div className="sale">Sale</div>
                 </div>
                 <div className="contentBox">
-                  <p className="brend">Mango</p>
                   <p className="name">{product.name}</p>
-                  <h5 className="price">{product.price} $</h5>
-                  <a href="#" className="buy">
-                    Buy Now
-                  </a>
+                  <h5 className="price">{product.price} €</h5>
+                  <Link to={`/productDetail/${product.id}`} className="buy">
+                    Go to details
+                  </Link>
                 </div>
               </div>
             </div>
@@ -75,7 +77,7 @@ function FilteredProducts(props) {
         nextLinkClassName="page-num"
         activeLinkClassName="active"
       />
-    </div>
+    </>
   );
 }
 

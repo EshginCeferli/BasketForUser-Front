@@ -15,15 +15,13 @@ function Brands() {
               <Swiper
                 slidesPerView={"2"}
                   breakpoints={{
-                    // when window width is >= 320px
+                  
                     576: {
                       slidesPerView: 2
                     },
-                    // when window width is >= 768px
                     768: {
                       slidesPerView: 4
                     },
-                    // when window width is >= 1200px
                     1200: {
                       slidesPerView: 4
                     }

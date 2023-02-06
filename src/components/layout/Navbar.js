@@ -3,7 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-import "../../assets/css/Navbar/navbar.css"
+import "../../assets/css/Navbar/navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -16,31 +16,16 @@ function Navbar() {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  const [basketCount, setBasketCount] = useState("");
-
-  async function GetProducts() {
-    await axios.get(`${url}/api/Basket/GetBasketCount`, config).then((res) => {
-      setBasketCount(res.data);
-      // if(res.data.status === "success" || res.status === 200){
-      //   Success.fire({
-      //     icon: "success",
-      //     title: "Welcome, you can manage products here!",
-      //   });
-      // }
-      // console.log(res);
-    
-      // localStorage.setItem("basketCount", res.data)
-    });    
-  }
-  // console.log(basketCount)
+  const [basketcount, setbasketcount] = useState("");
 
   useEffect(() => {
-    GetProducts();
+    async function getbasketcount() {
+      const res = await axios.get(`${url}/api/Basket/Getbasketcount`, config);
+      setbasketcount(res.data);
+    }
+    getbasketcount();
   }, []);
 
-  // let basketCount = localStorage.getItem("basketCount")
-
-  // const [count, setCount] =(basketCount)
   //Get currents users name from token
   let currentToken = localStorage.getItem("token");
   let currentUser;
@@ -64,7 +49,6 @@ function Navbar() {
       ];
   }
 
-
   //Logout function
   function handleLogout() {
     localStorage.removeItem("token");
@@ -86,9 +70,9 @@ function Navbar() {
               <div className="col-lg-12 col-md-12 col-sm-12">
                 <nav className="navbar navbar-expand-lg navbar-light nav-color">
                   <div className="logo">
-                    <a href="">
+                    <NavLink to={"/"}>
                       <img src="/images/Online-shop-01.png" alt="" />
-                    </a>
+                    </NavLink>
                   </div>
                   <button
                     className="navbar-toggler my-toggleer"
@@ -143,21 +127,13 @@ function Navbar() {
                         </a>
                       </li>
                     </ul>
-                    <form action="">
-                      <div className="search">
-                        <input
-                          type="search"
-                          className="input"
-                          placeholder="Search"
-                        />
-                        <button type="submit" className="my-btn">
-                          <i className="fa-solid fa-magnifying-glass search-icon" />
-                        </button>
-                      </div>
-                    </form>
+
                     <div className="dropdown">
                       <a href="">
-                        <button className="dropbtn"> {currentToken ? currentUser : (<span>Sign here</span>)}</button>
+                        <button className="dropbtn">
+                          {" "}
+                          {currentToken ? currentUser : <span>Sign here</span>}
+                        </button>
                       </a>
                       <div className="dropdown-content drop-content">
                         <Link to="/register">Register</Link>
@@ -173,7 +149,7 @@ function Navbar() {
                     <div className="basket">
                       <Link to={"/basket"}>
                         <i className="fa-solid fa-basket-shopping">
-                          <sup>{basketCount}</sup>
+                          <sup>{basketcount ? basketcount : 0}</sup>
                         </i>
                       </Link>
                     </div>

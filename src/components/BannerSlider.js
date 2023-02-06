@@ -14,7 +14,6 @@ function BannerSlider() {
               <div className="swiper mySwiper">
                 <div className="swiper-wrapper">
                   <Swiper
-               
                     loop={true}
                     spaceBetween={10}
                     effect={"coverflow"}

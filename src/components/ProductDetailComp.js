@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
-import ReactPaginate from "react-paginate";
 import Swal from "sweetalert2";
 import "../assets/css/ProductDetail/productDetail.css";
 
@@ -45,13 +44,11 @@ function ProductDetailComp(props) {
       .post(`${url}/api/Basket/AddBasket?id=${id}`, null, config)
       .then((res) => {
         if (res.data.status === "success" || res.status === 200) {
-          // basketCount++;
-          // localStorage.setItem('basketCount', basketCount);
-          //  console.log(basketCount);
-          Success.fire({
-            icon: "success",
-            title: "Product successfully added to basket",
-          });
+          sessionStorage.setItem(
+            "sweetAlertMessage",
+            "Added product to basket succesfully"
+          );
+          window.location.reload();
         }
       })
       .catch((err) => {
@@ -69,7 +66,16 @@ function ProductDetailComp(props) {
       });
   }
 
-  console.log(id);
+  //Get Sweet Alert from session storage after refresh
+  if (sessionStorage.getItem("sweetAlertMessage")) {
+    Success.fire({
+      text: sessionStorage.getItem("sweetAlertMessage"),
+      icon: "success",
+      timer: 2000,
+    });
+    sessionStorage.removeItem("sweetAlertMessage");
+  }
+
   return (
     <div>
       <section id="product-detail">
@@ -78,7 +84,10 @@ function ProductDetailComp(props) {
             <div className="card-wrapper">
               <div className="card">
                 <div className="img-showcase">
-                  <img  src={`data:image/jpeg;base64,${props.product.image}`} alt="shoe image" />
+                  <img
+                    src={`data:image/jpeg;base64,${props.product.image}`}
+                    alt="shoe image"
+                  />
                 </div>
 
                 <div className="product-content">
@@ -90,15 +99,7 @@ function ProductDetailComp(props) {
                   </div>
                   <div className="about-product">
                     <h3>About this product:</h3>
-                    <p>
-                      This brand voice permeates every aspect of your online
-                      marketing: social media, SEO, paid search — every customer
-                      touchpoint. Unique, compelling copy makes your products
-                      more relevant for search engines and other marketing
-                      mediums that value original content.In fact, following
-                      this simple formula below is a great way to writing
-                      compelling product descriptions:
-                    </p>
+                    <p>{props?.product.description}</p>
                     <ul>
                       <li>
                         Available : <span>in stock</span>

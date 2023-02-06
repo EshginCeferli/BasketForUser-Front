@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import { TextField } from "@mui/material";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -8,9 +12,13 @@ function ProductCreateBtn(props) {
   const url = "https://localhost:7110";
 
   const [nameInput, setNameInput] = useState();
+  const [descInput, setDescInput] = useState();
   const [priceInput, setPriceInput] = useState();
   const [countInput, setcountInput] = useState();
   const [imageInput, setImageInput] = useState();
+  const [categoryInput, setCategoryInput] = useState();
+
+  const [categories, setCategories] = useState([]);
 
   //sweet alert
   const Success = Swal.mixin({
@@ -36,14 +44,27 @@ function ProductCreateBtn(props) {
     },
   });
 
+  //Get Categories from Api
+  async function GetCategories() {
+    await axios.get(`${url}/api/Category/GetAll`).then((res) => {
+      setCategories(res.data);
+    });
+  }
+
+  useEffect(() => {
+    GetCategories();
+  }, []);
+
   //Create Product
   async function CreateProduct() {
     await axios
       .post(`${url}/api/Product/Create`, {
         name: nameInput,
+        description: descInput,
         price: priceInput,
         count: countInput,
         image: imageInput,
+        categoryId: categoryInput,
       })
       .then((res) => {
         if (res.data.status === "success" || res.status === 200) {
@@ -129,6 +150,16 @@ function ProductCreateBtn(props) {
               </div>
               <div className="row mt-2">
                 <TextField
+                  onChange={(e) => setDescInput(e.target.value)}
+                  value={descInput}
+                  className="student-input"
+                  id="outlined-basic"
+                  label="Description"
+                  variant="outlined"
+                />
+              </div>
+              <div className="row mt-2">
+                <TextField
                   onChange={(e) => setPriceInput(e.target.value)}
                   value={priceInput}
                   className="student-input"
@@ -138,7 +169,6 @@ function ProductCreateBtn(props) {
                   variant="outlined"
                   step="0.1"
                   min="0"
-                 
                 />
               </div>
 
@@ -167,6 +197,30 @@ function ProductCreateBtn(props) {
                   type="file"
                   onChange={(e) => base64Img(e.target.files[0])}
                 ></input>
+              </div>
+
+              <div className="col-6">
+                <Box sx={{ width: 210 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Category of Product
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={categoryInput}
+                      label="category"
+                      onChange={(e) => setCategoryInput(e.target.value)}
+                      defaultValue=""
+                    >
+                      {categories.map((res) => (
+                        <MenuItem key={res.id} value={res.id}>
+                          {res.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
               </div>
             </div>
             <div className="modal-footer">

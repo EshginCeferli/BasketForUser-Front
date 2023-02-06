@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Footer from "../components/layout/Footer";
@@ -9,6 +10,7 @@ import "../assets/css/Register/register.css"
 function Register() {
   const url = "https://localhost:7110";
 
+  const navigate = useNavigate();
   
   //Prop for api start
   const [fullname, setFullname] = useState();
@@ -30,16 +32,38 @@ function Register() {
         { "Content-Type": "multipart/form-data" }
       )
       .then(function (response) {
+        if(response.data.statusMessage = "Failed"){
+          Swal.fire({
+            position: "top-end",
+            icon: "error",            
+            text: response.data.errors,
+            showConfirmButton: true,
+           
+          });
+        }
+        if(response.data.statusMessage = "Succes"){
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "You registered succesfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          console.log(response);
+          navigate("/");
+        }      
+      
+       
+      })
+      .catch(function (error) {
         Swal.fire({
           position: "top-end",
-          icon: "success",
-          title: "You registered succesfully",
+          icon: "error",
+          title: "Something went wrong",
           showConfirmButton: false,
           timer: 1500,
         });
-        console.log(response);
-      })
-      .catch(function (error) {});
+      });
   }
   return (
     <>

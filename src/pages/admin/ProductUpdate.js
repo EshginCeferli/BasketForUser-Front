@@ -9,26 +9,37 @@ function ProductUpdate() {
 
   const url = "https://localhost:7110";
 
-  const [product, setproduct] = useState([]);
   const [nameInput, setNameInput] = useState();
-  const [countInput, setcountInput] = useState("");
-  const [priceInput, setpriceInput] = useState("");
-  const [imageInput, setImageInput] = useState("");
+  const [descInput, setDescInput] = useState();
+  const [countInput, setcountInput] = useState();
+  const [priceInput, setpriceInput] = useState();
+  const [imageInput, setImageInput] = useState();
+  const [categoryInput, setCategoryInput] = useState();
+
+  const [categories, setCategories] = useState([]);
 
   //product for id
   async function Getproduct() {
     await axios.get(`${url}/api/Product/Get?id=${id}`).then((res) => {
-      setproduct(res.data);
       setNameInput(res.data.name);
       setcountInput(res.data.count);
       setImageInput(res.data.image);
       setpriceInput(res.data.price);
- 
+      setDescInput(res.data.description);
+      setCategoryInput(res.data.category.id);
+    });
+  }
+
+  //Get Categories from Api
+  async function GetCategories() {
+    await axios.get(`${url}/api/Category/GetAll`).then((res) => {
+      setCategories(res.data);
     });
   }
 
   useEffect(() => {
     Getproduct();
+    GetCategories();
   }, []);
 
   //sweet alert
@@ -62,10 +73,12 @@ function ProductUpdate() {
       .put(`${url}/api/Product/Update/${id}`, {
         id: id,
         name: nameInput,
+        description: descInput,
         count: countInput,
         price: priceInput,
         image: imageInput,
         releaseYear: priceInput,
+        categoryId: categoryInput,
       })
       .then((res) => {
         if (res.data.status === "success" || res.status === 200) {
@@ -121,6 +134,16 @@ function ProductUpdate() {
           />
         </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Product Description</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Product Description"
+            onChange={(e) => setDescInput(e.target.value)}
+            defaultValue={descInput}
+          />
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicDatetime">
           <Form.Label>Product count</Form.Label>
           <Form.Control
@@ -141,6 +164,19 @@ function ProductUpdate() {
             step="0.001"
             min="0"
           />
+        </Form.Group>
+
+        <Form.Group className="mt-2">
+          <Form.Select
+            aria-label="Product Category"
+            onChange={(e) => setCategoryInput(e.target.value)}
+          >
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </Form.Select>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicDatetime">

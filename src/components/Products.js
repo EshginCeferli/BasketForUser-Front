@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef, useContext} from "react";
 import { Link } from "react-router-dom";
+import { BasketContext } from "../BasketContext";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import Swal from "sweetalert2";
@@ -9,17 +10,11 @@ import "swiper/css/navigation";
 function Products() {
   const url = "https://localhost:7110";
 
-  // let basketCount = localStorage.getItem('basketCount');
-
-  // if (!basketCount) {
-  //   basketCount = 0;
-  // } else {
-  //   basketCount = parseInt(basketCount, 10);
-  // }
-
+  const ref = useRef(null)
   //Get token of current user send backend by request header
   let token = JSON.parse(localStorage.getItem("token"));
 
+ 
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -31,7 +26,7 @@ function Products() {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 4;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -73,12 +68,7 @@ function Products() {
   async function GetProducts() {
     await axios.get(`${url}/api/Product/GetAll`).then((res) => {
       setProducts(res.data);
-      // if(res.data.status === "success" || res.status === 200){
-      //   Success.fire({
-      //     icon: "success",
-      //     title: "Welcome, you can manage products here!",
-      //   });
-      // }
+ 
     });
   }
 
@@ -92,14 +82,14 @@ function Products() {
       .post(`${url}/api/Basket/AddBasket?id=${id}`, null, config)
       .then((res) => {
         if (res.data.status === "success" || res.status === 200) {
-          // basketCount++;
-          // localStorage.setItem('basketCount', basketCount);
-          //  console.log(basketCount);
-          Success.fire({
-            icon: "success",
-            title: "Product successfully added to basket",
-          });
+          sessionStorage.setItem(
+            "sweetAlertMessage",
+            "Added product to basket succesfully"
+          );
+          window.location.reload();      
+          
         }
+        
       })
       .catch((err) => {
         if (err.response.status === 401 || err.response.data.status === 401) {
@@ -114,6 +104,16 @@ function Products() {
           });
         }
       });
+      ref.current?.scrollIntoView();
+  }
+
+  if (sessionStorage.getItem("sweetAlertMessage")) {
+    Success.fire({
+      text: sessionStorage.getItem("sweetAlertMessage"),
+      icon: "success",
+      timer: 2000,
+    });
+    sessionStorage.removeItem("sweetAlertMessage");
   }
 
   return (
@@ -121,7 +121,7 @@ function Products() {
       <div className="row">
         {currentItems?.map((product, i) => {
           return (
-            <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
+            <div className="col-lg-3 col-md-6 col-sm-12" key={i} ref={ref} >
               <div className="card">
                 <div className="imgBox">
                   <Link to={`/productDetail/${product.id}`}>
@@ -136,8 +136,7 @@ function Products() {
                 <div className="contentBox">
                   <p className="name">{product.name}</p>
                   <h5 className="price">{product.price} €</h5>
-                  <a
-                    href="#"
+                  <a                
                     className="buy"
                     onClick={() => AddBasket(product.id)}
                   >

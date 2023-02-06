@@ -7,6 +7,7 @@ import "../assets/css/Basket/basket.css";
 function Basket() {
   return (
     <div>
+  
       <Navbar />
       <section
         id="header-area"
@@ -21,7 +22,8 @@ function Basket() {
         </div>
       </section>
       <BasketProducts />
-      <Footer />
+      <Footer />    
+     
     </div>
   );
 }

@@ -60,12 +60,7 @@ function ProductTable() {
   async function GetProducts() {
     await axios.get(`${url}/api/Product/GetAll`).then((res) => {
       setProducts(res.data);
-      // if(res.data.status === "success" || res.status === 200){
-      //   Success.fire({
-      //     icon: "success",
-      //     title: "Welcome, you can manage products here!",
-      //   });
-      // }
+    
     });
   }
 
@@ -85,14 +80,15 @@ function ProductTable() {
       confirmButtonText: "Yes, delete it!",
     })
       .then((result) => {
+        GetProducts();
         if (result.isConfirmed) {
-          GetProducts();
+           GetProducts();
           axios
             .delete(`${url}/api/Product/Delete?id=${id}`)
             .then(function (response) {
               Swal.fire("", "Deleted", "success");
             });
-          GetProducts();
+           GetProducts();
         }
       })
       .catch(function (error) {

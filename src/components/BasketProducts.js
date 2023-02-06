@@ -5,15 +5,7 @@ import { Link } from "react-router-dom";
 
 function BasketProducts() {
   const url = "https://localhost:7110";
-
-  // let basketCount = localStorage.getItem('basketCount');
-
-  // if (!basketCount) {
-  //   basketCount = 0;
-  // } else {
-  //   basketCount = parseInt(basketCount, 10);
-  // }
-
+  
   let total = 0;
 
   let token = JSON.parse(localStorage.getItem("token"));
@@ -68,7 +60,6 @@ function BasketProducts() {
       .delete(`${url}/api/Basket/DeleteBasketProduct?id=${id}`, config)
       .then(function (response) {
 
-        // localStorage.setItem('basketCount', basketCount);
 
         Swal.fire("", "Deleted", "success");
         console.log(response);
@@ -86,7 +77,7 @@ function BasketProducts() {
     GetBasket();
   };
 
-  console.log(baskets.length);
+ 
   return (
     <div>
       <section id="table-area">

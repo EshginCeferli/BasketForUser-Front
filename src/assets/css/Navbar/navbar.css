@@ -256,7 +256,12 @@ a {
   border-radius: 2px;
   overflow: hidden;
   margin-bottom: 15px;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
+}
+#product-area .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 #product-area .card:hover .contentBox .buy {
   top: 0;

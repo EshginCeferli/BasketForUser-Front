@@ -3,6 +3,7 @@ import axios from "axios";
 import FilteredProducts from "../components/FilteredProducts";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import "../assets/css/Category/category.css";
 
 function Shop() {
   //All Product Url
@@ -46,15 +47,20 @@ function Shop() {
         (item) => item.category.name.toLowerCase() === category.toLowerCase()
       );
       setFilteredProducts(filteredProducts);
-      console.log(filteredProducts);
     }
   }
+
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const handleClick = (category) => {
+    setActiveCategory(category);
+    getFilteredList(category);
+  };
 
   //Search from filtered items method
   result = filteredProducts.filter((i) =>
     i.name.toLowerCase().includes(value.toLowerCase())
   );
-  console.log(result);
 
   return (
     <div>
@@ -83,11 +89,14 @@ function Shop() {
                         value={value}
                         className="search-Product"
                       />
-                      <ul>
-                        <li className="filter-button active">
-                          {" "}
+                      <ul className="filter-container">
+                        <li
+                          className={`filter-button ${
+                            activeCategory === "All" ? "active" : ""
+                          }`}
+                        >
                           <a
-                            onClick={() => getFilteredList("All")}
+                            onClick={() => handleClick("All")}
                             style={{ color: "white" }}
                           >
                             All
@@ -95,10 +104,15 @@ function Shop() {
                         </li>
                         {categorys?.map((category, index) => {
                           return (
-                            <li key={index} className="filter-button">
+                            <li
+                              key={index}
+                              className={`filter-button ${
+                                activeCategory === category.name ? "active" : ""
+                              }`}
+                            >
                               <a
                                 style={{ color: "white" }}
-                                onClick={() => getFilteredList(category.name)}
+                                onClick={() => handleClick(category.name)}
                               >
                                 {category.name}
                               </a>
@@ -112,7 +126,6 @@ function Shop() {
               </div>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-12">
-              
               {result.length == 0 ? (
                 <h1>"There is no film for your search"</h1>
               ) : (
