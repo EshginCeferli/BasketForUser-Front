@@ -41,7 +41,7 @@ function Shop() {
   //Filter for category method
   function getFilteredList(category) {
     if (category === "All") {
-      return setFilteredProducts(items);
+       setFilteredProducts(items);
     } else {
       var filteredProducts = items?.filter(
         (item) => item.category.name.toLowerCase() === category.toLowerCase()
@@ -127,7 +127,7 @@ function Shop() {
             </div>
             <div className="col-lg-9 col-md-9 col-sm-12">
               {result.length == 0 ? (
-                <h1>"There is no film for your search"</h1>
+                <h1>"There is no product for your search"</h1>
               ) : (
                 <FilteredProducts filteredProducts={result} />
               )}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect , useRef, useContext} from "react";
 import { Link } from "react-router-dom";
-import { BasketContext } from "../BasketContext";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import Swal from "sweetalert2";
@@ -86,7 +85,8 @@ function Products() {
             "sweetAlertMessage",
             "Added product to basket succesfully"
           );
-          window.location.reload();      
+          window.location.reload();
+          GetProducts();      
           
         }
         

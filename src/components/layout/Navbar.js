@@ -52,15 +52,22 @@ function Navbar() {
   //Logout function
   function handleLogout() {
     localStorage.removeItem("token");
-    navigate("/");
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Signed out",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    sessionStorage.setItem(
+      "sweetAlertMessage",
+      "You signed out"
+    );
+    window.location.reload();    
   }
+
+  if (sessionStorage.getItem("sweetAlertMessage")) {
+    Swal.fire({
+      text: sessionStorage.getItem("sweetAlertMessage"),
+      icon: "success",
+      timer: 2000,
+    });
+    sessionStorage.removeItem("sweetAlertMessage");
+  }
+
   return (
     <div>
       <header>
