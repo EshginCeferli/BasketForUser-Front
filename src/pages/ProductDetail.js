@@ -13,6 +13,21 @@ function ProductDetail() {
 
   const [product, setproduct] = useState([]);
 
+  const [basketcount, setbasketcount] = useState(0);
+
+  
+  let token = JSON.parse(localStorage.getItem("token"));
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  async function getbasketcount() {
+    await axios.get(`${url}/api/Basket/Getbasketcount`, config).then((res) => {
+      setbasketcount(res.data);
+    });
+  }
+
   //product for id
   async function Getproduct() {
     await axios.get(`${url}/api/Product/Get?id=${id}`).then((res) => {
@@ -22,11 +37,12 @@ function ProductDetail() {
 
   useEffect(() => {
     Getproduct();
+    getbasketcount();
   }, []);
 
   return (
     <div>
-      <Navbar />
+      <Navbar basketcount={basketcount}/>
       <ProductDetailComp product={product} id={id}/>
       <Footer />
     </div>

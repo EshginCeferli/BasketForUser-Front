@@ -5,27 +5,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import "../../assets/css/Navbar/navbar.css";
 
-function Navbar() {
-  const navigate = useNavigate();
+function Navbar(props) {
+  const navigate = useNavigate(); 
 
-  const url = "https://localhost:7110";
-
-  let token = JSON.parse(localStorage.getItem("token"));
-
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
-
-  const [basketcount, setbasketcount] = useState("");
-
-  useEffect(() => {
-    async function getbasketcount() {
-      const res = await axios.get(`${url}/api/Basket/Getbasketcount`, config);
-      setbasketcount(res.data);
-    }
-    getbasketcount();
-  }, []);
-
+console.log(props);
   //Get currents users name from token
   let currentToken = localStorage.getItem("token");
   let currentUser;
@@ -156,7 +139,7 @@ function Navbar() {
                     <div className="basket">
                       <Link to={"/basket"}>
                         <i className="fa-solid fa-basket-shopping">
-                          <sup>{basketcount ? basketcount : 0}</sup>
+                          <sup>{props.basketcount}</sup>
                         </i>
                       </Link>
                     </div>

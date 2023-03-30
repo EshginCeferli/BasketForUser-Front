@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useRef, useContext} from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
@@ -6,14 +6,13 @@ import Swal from "sweetalert2";
 import "swiper/css";
 import "swiper/css/navigation";
 
-function Products() {
+function Products(props) {
   const url = "https://localhost:7110";
 
-  const ref = useRef(null)
+  const ref = useRef(null);
   //Get token of current user send backend by request header
   let token = JSON.parse(localStorage.getItem("token"));
 
- 
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -67,7 +66,6 @@ function Products() {
   async function GetProducts() {
     await axios.get(`${url}/api/Product/GetAll`).then((res) => {
       setProducts(res.data);
- 
     });
   }
 
@@ -81,15 +79,14 @@ function Products() {
       .post(`${url}/api/Basket/AddBasket?id=${id}`, null, config)
       .then((res) => {
         if (res.data.status === "success" || res.status === 200) {
-          sessionStorage.setItem(
-            "sweetAlertMessage",
-            "Added product to basket succesfully"
-          );
-          window.location.reload();
-          GetProducts();      
-          
+          Success.fire({
+            icon: "success",
+            title: "Product successfully added",
+          });
+          axios.get(`${url}/api/Basket/Getbasketcount`, config).then((res) => {
+            props.setbasketcount(res.data);
+          });
         }
-        
       })
       .catch((err) => {
         if (err.response.status === 401 || err.response.data.status === 401) {
@@ -104,16 +101,7 @@ function Products() {
           });
         }
       });
-      ref.current?.scrollIntoView();
-  }
-
-  if (sessionStorage.getItem("sweetAlertMessage")) {
-    Success.fire({
-      text: sessionStorage.getItem("sweetAlertMessage"),
-      icon: "success",
-      timer: 2000,
-    });
-    sessionStorage.removeItem("sweetAlertMessage");
+    ref.current?.scrollIntoView();
   }
 
   return (
@@ -121,7 +109,7 @@ function Products() {
       <div className="row">
         {currentItems?.map((product, i) => {
           return (
-            <div className="col-lg-3 col-md-6 col-sm-12" key={i} ref={ref} >
+            <div className="col-lg-3 col-md-6 col-sm-12" key={i} ref={ref}>
               <div className="card">
                 <div className="imgBox">
                   <Link to={`/productDetail/${product.id}`}>
@@ -136,10 +124,7 @@ function Products() {
                 <div className="contentBox">
                   <p className="name">{product.name}</p>
                   <h5 className="price">{product.price} €</h5>
-                  <a                
-                    className="buy"
-                    onClick={() => AddBasket(product.id)}
-                  >
+                  <a className="buy" onClick={() => AddBasket(product.id)}>
                     Buy Now
                   </a>
                 </div>

@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function BasketProducts() {
+function BasketProducts(props) {
   const url = "https://localhost:7110";
   
   let total = 0;
@@ -60,9 +60,11 @@ function BasketProducts() {
       .delete(`${url}/api/Basket/DeleteBasketProduct?id=${id}`, config)
       .then(function (response) {
 
-
         Swal.fire("", "Deleted", "success");
-        console.log(response);
+        axios.get(`${url}/api/Basket/Getbasketcount`, config)
+        .then((res) => {
+          props.setbasketcount(res.data);
+        });
       })
       .catch(function (error) {
         Swal.fire({
